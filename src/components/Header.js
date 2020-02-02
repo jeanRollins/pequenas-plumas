@@ -56,35 +56,7 @@ function Header () {
   )
 }
 
-var stylesXS = {
-  headerNavNone : {
-    display : 'none',
-  }
-}
 
-var stylesSM = {
-  headerNavNone : {
-    display : 'none',
-  }
-}
-
-var stylesMD = {
-  headerNavNone : {
-    display : 'none',
-  }
-}
-
-var stylesLG = {
-  headerNavNone : {
-    display : 'block',
-  }
-}
-
-var stylesXL = {
-  headerNavNone : {
-    display : 'block',
-  }
-}
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
