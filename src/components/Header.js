@@ -23,23 +23,17 @@ function Header () {
         <Navbar.Brand >Pequeñas Plumas</Navbar.Brand>
         <Nav className="mr-auto">
           
-          <Nav.Link  
-            className=" d-xs-none d-sm-none" 
-            xs="false"
-            sm="false" 
-            md={stylesMD} 
-            lg={stylesLG}     
-            >
+ 
             <Link to="/" className="navLink"> Home </Link>
-          </Nav.Link>
+      
 
-          <Nav.Link className="" >
+      
             <Link to="/about"  className="navLink"> About </Link>
-          </Nav.Link>
+       
 
-          <Nav.Link to="/about" >
+    
             <Link to="/gallery"  className="navLink" > Gallery </Link>
-          </Nav.Link>
+        
 
           <Menu right styles={ styles }>
 
