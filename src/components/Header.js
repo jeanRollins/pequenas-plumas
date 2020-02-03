@@ -4,8 +4,9 @@ import { slide as Menu } from 'react-burger-menu'
 //Bootstrap Components
 import {Navbar, Nav} from 'react-bootstrap'
 
-
 import {Link} from 'react-router-dom'
+
+import { FaHome ,FaGripHorizontal ,FaUsers, FaImage } from "react-icons/fa";
 
 
 function showSettings (e) {
@@ -20,34 +21,34 @@ function Header () {
     <div className="">
        
       <Navbar  className="bgPrimary" variant="dark">
-        <Navbar.Brand >Pequeñas Plumas</Navbar.Brand>
+        <Navbar.Brand >Pequeñas Plumas  </Navbar.Brand>
         <Nav className="mr-auto">
-          
- 
-            <Link to="/" className="navLink"> Home </Link>
-      
-
-      
-            <Link to="/about"  className="navLink"> About </Link>
        
-
+          <Link 
+            to="/" 
+            className="navLink d-none d-sm-block"
+            
+            > Home   </Link>
     
-            <Link to="/gallery"  className="navLink" > Gallery </Link>
-        
+          <Link to="/avestipo"  className="navLink d-none d-sm-block" > Tipos de Aves </Link>
 
-          <Menu right styles={ styles }>
+          <Link to="/about"  className="navLink d-none d-sm-block"> Nosotros </Link>
+      
+          <Link to="/gallery"  className="navLink d-none d-sm-block" > Galería </Link>
 
-            <Link to="/" 
-              className="bmMenuItem" 
-
-            > Home </Link>
-
-            <Link to="/about" className="bmMenuItem"> About </Link>
-
-            <Link to="/contact" className="bmMenuItem"> Contact </Link>
-   
-          </Menu>  
         </Nav>
+
+        <Menu right styles={ styles } className="">
+
+          <Link to="/" className="bmMenuItem " > <FaHome className="iconsNav"/> Home   </Link>
+
+          <Link to="/avestipo" className="bmMenuItem ">  <FaGripHorizontal className="iconsNav"/> Tipos de Aves </Link>
+          
+          <Link to="/about" className="bmMenuItem "> <FaUsers className="iconsNav"/> Nosotros </Link>
+
+          <Link to="/gallery" className="bmMenuItem "> <FaImage className="iconsNav"/> Galería </Link>
+
+        </Menu>  
 
       </Navbar>
 
@@ -59,22 +60,22 @@ function Header () {
 
 var styles = {
   bmBurgerButton: {
-    position: 'fixed',
+    position: 'relative',
     width: '36px',
     height: '30px',
-    left: '36px',
-    top: '36px'
+    left: '0px',
+    top: '0px'
   },
   bmBurgerBars: {
-    background: '#373a47'
+    background: '#fff'
   },
   bmBurgerBarsHover: {
     background: '#a90000', 
     color : '#cccccc'
   },
   bmCrossButton: {
-    height: '24px',
-    width: '24px'
+    height: '30px',
+    width: '30px'
   },
   bmCross: {
     background: '#bdc3c7'
@@ -100,15 +101,12 @@ var styles = {
     width : '100%' ,
     textDecoration : 'none', 
     color : '#fff', 
-    margin : '10px 10px 10px 10px'
+    margin : '13px 13px 13px 13px'
   },
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)'
   }
 }
-
-
-
 
 export default Header
 
