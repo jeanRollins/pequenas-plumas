@@ -2,7 +2,7 @@ import React from 'react'
 
 import CarouselResponsive from '../components/CarrouselResponsive'
 
-import firebase from '../firebase'
+//import firebase from '../firebase'
 
 
 
