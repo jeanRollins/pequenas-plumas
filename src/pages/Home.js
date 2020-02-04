@@ -2,15 +2,9 @@ import React from 'react'
 
 import CarouselResponsive from '../components/CarrouselResponsive'
 
-//import firebase from '../firebase'
-
-
-
-
 function Home() {
   return (
     <div className="">
-
       <CarouselResponsive imgSrc={ getResources() }/>
       { getFilesFirebase() }
     </div>
@@ -37,11 +31,7 @@ function getResources(){
   return data
 }
 
-function getFilesFirebase(){
-
-  //var docRef = firebase.collection("my-app-notice").doc("files_home_carousel");
-
-  
+function getFilesFirebase(){  
 
 }
 
