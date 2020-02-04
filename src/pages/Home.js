@@ -2,11 +2,14 @@ import React from 'react'
 
 import CarouselResponsive from '../components/CarrouselResponsive'
 
+//import firebase from '../firebase'
+
 function Home() {
   return (
     <div className="">
       <CarouselResponsive imgSrc={ getResources() }/>
       { getFilesFirebase() }
+
     </div>
   )
 }
