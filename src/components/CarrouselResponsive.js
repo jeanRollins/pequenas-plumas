@@ -5,12 +5,13 @@ import { Carousel } from 'react-responsive-carousel'
 function CarouselResponsive(props) {
   
   let src = props.imgSrc 
-
-  var image = src.map( (img, i) =>
-      <div key={i}>
-        <img src={img.url} alt={img.legend}/>
-      </div>
-  ) 
+  
+  var image = src.map( (data , i) =>  
+    <div key={i}>
+      <img src={data.url} alt={data.legend}/>
+      <p className="legend">Lorem ipzum</p>
+    </div>
+  )
   
   return (
     <Carousel>

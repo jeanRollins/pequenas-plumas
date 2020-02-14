@@ -20,6 +20,7 @@ function App() {
       <div>
         <Header/>
         <Switch>
+          
           <Route path="/" exact component={Home} /> 
           <Route path="/avestipo" component={AvesTipo} />  
           <Route path="/gallery"  component={Gallery} /> 
@@ -33,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

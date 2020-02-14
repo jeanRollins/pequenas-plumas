@@ -2,19 +2,20 @@ import React from 'react'
 
 import CarouselResponsive from '../components/CarrouselResponsive'
 
-//import firebase from '../firebase'
+import db from '../firebase'
 
 function Home() {
   return (
     <div className="">
       <CarouselResponsive imgSrc={ getResources() }/>
-      { getFilesFirebase() }
-
+      {console.log( 'getFilesFirebase()' ,getFilesFirebase())}
+      {console.log( 'getResources()' ,getResources())}
     </div>
   )
 }
 
-function getResources(){
+function getResources() {
+  
 
   var data = [
     {
@@ -36,6 +37,21 @@ function getResources(){
 
 function getFilesFirebase(){  
 
+  var dataFiles = [] ;
+  db.collection('files_home_carousel').get().then(( querySnapshot ) => {
+    
+    querySnapshot.forEach( (doc , index) => {
+      var file = doc.data()
+      dataFiles.push({
+        url : file.file ,
+        legend : file.legend
+      })
+
+    })
+
+  })
+   
+  return dataFiles
 }
 
 export default Home 
