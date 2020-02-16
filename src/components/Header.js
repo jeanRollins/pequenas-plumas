@@ -9,11 +9,6 @@ import {Link} from 'react-router-dom'
 import { FaHome ,FaGripHorizontal ,FaUsers, FaImage } from "react-icons/fa";
 
 
-function showSettings (e) {
-  e.preventDefault() 
-}
-
-
 function Header () {
 
   return (
