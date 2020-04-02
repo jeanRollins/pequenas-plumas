@@ -1,24 +1,21 @@
-import React from 'react' 
+import React  from 'react' 
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
 
-function CarouselResponsive(props) {
+export default function CarouselResponsive(props) {
+  var src = props.resources
+  console.log('props**' , props);
   
-  let src = props.imgSrc 
   
-  var image = src.map( (data , i) =>  
-    <div key={i}>
-      <img src={data.url} alt={data.legend}/>
-      <p className="legend">Lorem ipzum</p>
+  var galery = src.map( row =>
+    
+    <div key={row.file}>
+      <img src={row.file} alt=""/>
+      <p className="legend">{row.legend}</p>
     </div>
   )
-  
-  return (
-    <Carousel>
-      { image }
-    </Carousel>
-     
-  )
-}
 
-export default CarouselResponsive 
+  return <Carousel>
+    {galery }
+  </Carousel>
+}

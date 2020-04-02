@@ -1,57 +1,50 @@
-import React from 'react' 
-
-import CarouselResponsive from '../components/CarrouselResponsive'
-
 import db from '../firebase'
+import React ,{useEffect, useState} from 'react' 
+import CarouselResponsive from '../components/CarrouselResponsive'
+import { CardAbout } from '../components/MyCard'
+
+import { Container ,Row, Col} from 'react-bootstrap'
+
+
 
 function Home() {
+
+  const [dataCarousel , setDataCarousel] = useState([])
+  const [carousel , setCarousel] = useState([])
+  const [loop , setLoop] = useState(true)
+
+  const fetchData = async () => {
+
+    const data = await db.collection('files_home_carousel').get()
+    setDataCarousel( data.docs.map( doc =>  doc.data()  ))
+
+    console.log( 'dataCarousel', dataCarousel);
+    
+    setCarousel( <CarouselResponsive
+                    resources={dataCarousel}
+                  /> ) 
+    
+    setLoop(false)
+  }
+  
+  useEffect( () => {
+    fetchData()
+  },[loop] )
+  
   return (
-    <div className="">
-      <CarouselResponsive imgSrc={ getResources() }/>
-      {console.log( 'getFilesFirebase()' ,getFilesFirebase())}
-      {console.log( 'getResources()' ,getResources())}
+    <div>
+      {carousel}
+
+      <Container className="mt-5">
+        <Row>
+          <Col>
+            <CardAbout/>
+          </Col>
+        </Row>
+      </Container>
+
     </div>
   )
-}
-
-function getResources() {
-  
-
-  var data = [
-    {
-      url    : 'https://firebasestorage.googleapis.com/v0/b/my-app-notice.appspot.com/o/home%2Floros-e1530830031479.jpg?alt=media&token=f6828008-f6d7-45d7-b6ef-c194bd4d6f41' , 
-      legend :  'Lorem ipzum dolor is simple text of the test.' 
-    },
-    {
-      url    : 'https://firebasestorage.googleapis.com/v0/b/my-app-notice.appspot.com/o/home%2Floro-727x409.jpg?alt=media&token=d473cf8b-8ad4-4838-9aea-3a0eb05b846c' , 
-      legend :  'Lorem ipzum dolor is simple text of the test.' 
-    },
-    {
-      url    : 'https://firebasestorage.googleapis.com/v0/b/my-app-notice.appspot.com/o/home%2Fcuidados-de-tu-loro.jpg?alt=media&token=f98e0054-a685-4f4c-a3fa-85b07f821424' , 
-      legend :  'Lorem ipzum dolor is simple text of the test.' 
-    }
-  ]
-
-  return data
-}
-
-function getFilesFirebase(){  
-
-  var dataFiles = [] ;
-  db.collection('files_home_carousel').get().then(( querySnapshot ) => {
-    
-    querySnapshot.forEach( (doc , index) => {
-      var file = doc.data()
-      dataFiles.push({
-        url : file.file ,
-        legend : file.legend
-      })
-
-    })
-
-  })
-   
-  return dataFiles
 }
 
 export default Home 
