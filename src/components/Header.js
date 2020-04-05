@@ -13,23 +13,31 @@ function Header () {
 
   return (
 
-    <div className="">
+    <div className="effectShadow">
        
-      <Navbar  className="bgPrimary" variant="dark">
+      <Navbar  className="bgPrimary " variant="dark">
         <Navbar.Brand >Pequeñas Plumas  </Navbar.Brand>
         <Nav className="mr-auto">
        
           <Link 
             to="/" 
-            className="navLink d-none d-sm-block"
-            
-            > Home   </Link>
+            className="navLink d-none d-sm-block mx-2" > 
+            Home   
+          </Link>
     
-          <Link to="/avestipo"  className="navLink d-none d-sm-block" > Tipos de Aves </Link>
+          <Link 
+            to="/avestipo"  
+            className="navLink d-none d-sm-block mx-2" > 
+            Tipos de Aves 
+          </Link>
 
-          <Link to="/about"  className="navLink d-none d-sm-block"> Nosotros </Link>
+          <Link 
+            to="/about"  
+            className="navLink d-none d-sm-block mx-2"> 
+            Nosotros 
+          </Link>
       
-          <Link to="/gallery"  className="navLink d-none d-sm-block" > Galería </Link>
+          <Link to="/gallery"  className="navLink d-none d-sm-block mx-2" > Galería </Link>
 
         </Nav>
 

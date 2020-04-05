@@ -4,6 +4,7 @@ import CarouselResponsive from '../components/CarrouselResponsive'
 import { CardAbout } from '../components/MyCard'
 
 import { Container ,Row, Col} from 'react-bootstrap'
+import MapDirection from '../components/MapDirection'
 
 
 
@@ -17,8 +18,6 @@ function Home() {
 
     const data = await db.collection('files_home_carousel').get()
     setDataCarousel( data.docs.map( doc =>  doc.data()  ))
-
-    console.log( 'dataCarousel', dataCarousel);
     
     setCarousel( <CarouselResponsive
                     resources={dataCarousel}
@@ -35,7 +34,7 @@ function Home() {
     <div>
       {carousel}
 
-      <Container className="mt-5">
+      <Container className="mt-3">
         <Row>
           <Col>
             <CardAbout/>
@@ -43,6 +42,16 @@ function Home() {
         </Row>
       </Container>
 
+      <Container className="mt-5">
+        <Row>
+          <Col>
+            <MapDirection/>
+          </Col>
+        </Row>
+      </Container>
+
+      
+      
     </div>
   )
 }

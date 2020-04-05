@@ -10,6 +10,16 @@
     background: rgb(0, 77, 26);
 }
 
+.textColorPrimary{
+    color: #737373;
+}
+
 .iconsNav{
     margin: 0px 7px 5px 0px
+}
+
+.effectShadow{
+    -webkit-box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
+    -moz-box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
+    box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
 }
