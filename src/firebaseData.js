@@ -11,3 +11,14 @@ export function GetDocumentWhere( collection , where , type )
   
   return fetch()
 }
+
+export function GetCollecion(collection)
+{
+  const fetch = async () => {
+    const response = await db.collection(collection).get()
+    const data = response.docs.map( doc =>  doc.data() )
+    return data
+  }
+  
+  return fetch()
+}

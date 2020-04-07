@@ -2,7 +2,7 @@ import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
 
 //Bootstrap Components
-import {Navbar, Nav} from 'react-bootstrap'
+import {Navbar, Nav,NavDropdown, NavItem} from 'react-bootstrap'
 
 import {Link} from 'react-router-dom'
 
@@ -13,48 +13,51 @@ function Header () {
 
   return (
 
-    <div className="effectShadow">
-       
-      <Navbar  className="bgPrimary " variant="dark">
-        <Navbar.Brand >Pequeñas Plumas  </Navbar.Brand>
-        <Nav className="mr-auto">
-       
-          <Link 
-            to="/" 
-            className="navLink d-none d-sm-block mx-2" > 
-            Home   
-          </Link>
-    
-          <Link 
-            to="/avestipo"  
-            className="navLink d-none d-sm-block mx-2" > 
-            Tipos de Aves 
-          </Link>
+    <div className="effectShadow text-white">
 
-          <Link 
-            to="/about"  
-            className="navLink d-none d-sm-block mx-2"> 
-            Nosotros 
-          </Link>
-      
-          <Link to="/gallery"  className="navLink d-none d-sm-block mx-2" > Galería </Link>
+      <Navbar className="bgPrimary text-white"  expand="lg">
+        <Link 
+                to="/" 
+                className="navLink  text-decoration-none" > 
+                Pequeñas Plumas  
+              </Link> 
+        
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
 
-        </Nav>
+          <Nav className="mr-auto">
+            
+            <NavItem className="m-2">
+              <Link 
+                to="/" 
+                className="navLink  " > 
+                Home   
+              </Link>
+            </NavItem>
 
-        <Menu right styles={ styles } className="">
+            <NavItem className="m-2">
+              <Link 
+                to="/avestipo"  
+                className="navLink  " > 
+                Tipos de Aves 
+              </Link>
+            </NavItem>
 
-          <Link to="/" className="bmMenuItem " > <FaHome className="iconsNav"/> Home   </Link>
-
-          <Link to="/avestipo" className="bmMenuItem ">  <FaGripHorizontal className="iconsNav"/> Tipos de Aves </Link>
-          
-          <Link to="/about" className="bmMenuItem "> <FaUsers className="iconsNav"/> Nosotros </Link>
-
-          <Link to="/gallery" className="bmMenuItem "> <FaImage className="iconsNav"/> Galería </Link>
-
-        </Menu>  
-
+            <NavItem  className="m-2">
+              <Link 
+                to="/about"  
+                className="navLink  "> 
+                Nosotros 
+              </Link>
+            </NavItem>
+           
+          </Nav>
+        
+        </Navbar.Collapse>
       </Navbar>
 
+     
+      
     </div>
     
   )

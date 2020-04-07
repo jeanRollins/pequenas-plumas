@@ -6,6 +6,11 @@
     color : #fff 
 }
 
+.navLink:hover{
+    color : #cccccc ;
+    text-decoration: none;
+}
+
 .bgPrimary{
     background: rgb(0, 77, 26);
 }

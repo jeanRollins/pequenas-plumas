@@ -9,7 +9,9 @@ export default function CarouselResponsive(props) {
     
     <div key={row.file}>
       <img src={row.file} alt=""/>
-      <p className="legend">{row.legend}</p>
+     {
+      //<p className="legend">{row.legend}</p> 
+    } 
     </div>
   )
 

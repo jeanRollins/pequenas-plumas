@@ -13,6 +13,7 @@ import Gallery from './pages/Gallery'
 import AveDescripcion from './pages/AveDescripcion'
 
 import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
+import ButtonFloat from './components/ButtonFloat'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
       <div>
         <Header/>
+        <ButtonFloat/>
           <Switch>
             
             <Route path="/" exact component={Home} /> 

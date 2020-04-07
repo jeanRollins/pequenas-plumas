@@ -9,26 +9,17 @@ function AveDescripcion() {
     const [loop , setLoop] = useState(true)
 
     const { type } = useParams()
-    
     const fetchApi = async () => {
 
         const responseBirds = await GetDocumentWhere( 'birds_type', 'url' , '/' + type )
         setBirdsType( responseBirds[0] )
-
-        console.log('birdsType : ' , birdsType)
-
-        
-
         setLoop(false)
     }
 
     useEffect( () => {
-        
         fetchApi()
-        
     }, [loop])
     
-
     return (
         <Container className="mt-5">
             <Row>
