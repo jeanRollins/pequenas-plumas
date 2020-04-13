@@ -1,12 +1,11 @@
 import React from 'react' 
 import { slide as Menu } from 'react-burger-menu'
-
+import {LOGO} from '../globals'
 //Bootstrap Components
 import {Navbar, Nav,NavDropdown, NavItem} from 'react-bootstrap'
-
 import {Link} from 'react-router-dom'
-
 import { FaHome ,FaGripHorizontal ,FaUsers, FaImage } from "react-icons/fa";
+
 
 
 function Header () {
@@ -17,10 +16,10 @@ function Header () {
 
       <Navbar className="bgPrimary text-white"  expand="lg">
         <Link 
-                to="/" 
-                className="navLink  text-decoration-none" > 
-                Pequeñas Plumas  
-              </Link> 
+          to="/" 
+          className="navLink  text-decoration-none" > 
+          <img src={LOGO} style={stylesLogo} className="" />  
+        </Link> 
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -63,6 +62,11 @@ function Header () {
   )
 }
 
+var stylesLogo = {
+  
+  width: '179px' ,
+  height: '88px'
+}
 
 var styles = {
   bmBurgerButton: {

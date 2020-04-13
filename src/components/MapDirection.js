@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from 'react'
+import React from 'react'
 
 export default function MapDirection(){
     const style = {
@@ -13,7 +13,7 @@ export default function MapDirection(){
             frameBorder={0} 
             style={ style } 
             allowFullScreen 
-            aria-hidden="false" 
+            ariaHidden="false" 
             tabIndex={0}>    
         </iframe>
     )

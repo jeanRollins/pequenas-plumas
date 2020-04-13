@@ -3,12 +3,12 @@ import React from 'react'
 export default function Title(props){
     
     return( 
-        <h1 
+        <h3 
             style={ getStyle() }  
             align="center"
         >
             {props.nameTitle}
-        </h1>
+        </h3>
     )
 
 }

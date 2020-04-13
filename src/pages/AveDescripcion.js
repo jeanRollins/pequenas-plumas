@@ -2,7 +2,7 @@ import React, {useState , useEffect} from 'react'
 //import db from '../firebase'
 import {GetDocumentWhere} from '../firebaseData'
 import { useParams } from "react-router-dom";
-import { Container ,Row, Col} from 'react-bootstrap'
+import { Container , Row , Col } from 'react-bootstrap'
 
 function AveDescripcion() {
     const [birdsType , setBirdsType] = useState([])
