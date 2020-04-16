@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from 'react'
 
-import { withRouter } from 'react-router-dom'
+import {  withRouter } from 'react-router-dom' 
 import {auth} from '../../firebase'
 import {GetDocumentWhere} from '../../firebaseData'
 
 import SpinnerLoad from '../../components/SpinnerLoad'
-import Title from '../../components/Title'
+import Menu from '../../components/back/Menu'
+
+import { Container ,Row, Col, Table, Card} from 'react-bootstrap'
+
+
 import MyBarChart from '../../components/back/MyBarChart'
 
-
-import { Container ,Row, Col, Table} from 'react-bootstrap'
 
 
 const Dashboard = (props) => {
@@ -42,27 +44,27 @@ const Dashboard = (props) => {
             <SpinnerLoad/>
         ) : (
         <>   
-            <Title
-                className="my-5"
-                nameTitle={'Bienvenido ' + userFirebase[0].name }
-            />
+        
             <Container className="my-4">
                 
                 <Row>
                     <Col 
                         sm = {0} 
                         md = {0}
-                        lg = {2}
-                        xl = {2}
+                        lg = {3}
+                        xl = {3}
                     >
+                        <Card className="effectShadow p-3">
+                            <Menu />
+                        </Card>    
                     </Col>
                     <Col 
                         sm = {12} 
                         md = {6}
-                        lg = {5}
-                        xl = {5}
+                        lg = {4}
+                        xl = {4}
+                        className="p-3"
                     >
-                        
                         <MyBarChart className="mt-3"/>
                     </Col>
 
@@ -82,7 +84,7 @@ const Dashboard = (props) => {
                                     <th>Monto</th>
                                     <th>Fecha</th>
                                     <th>Total</th>
-    
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,6 +119,7 @@ const Dashboard = (props) => {
                                 </tr>
                             </tbody>
                         </Table>
+                        
                     </Col>
                 </Row>
             </Container>

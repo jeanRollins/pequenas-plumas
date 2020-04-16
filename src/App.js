@@ -25,9 +25,9 @@ function App(props) {
           <Switch>
             
             <Route path="/" exact component={Home} /> 
-            <Route path="/avestipo" component={AvesTipo} />  
-            <Route path="/gallery"  component={Gallery} /> 
-            <Route path="/about" component={About} />
+            <Route path="/avestipo" exact component={AvesTipo} />  
+            <Route path="/gallery"  exact component={Gallery} /> 
+            <Route path="/about" exact component={About} />
             
             <Route path="/:type" children={<AveDescripcion/>} />
           </Switch>

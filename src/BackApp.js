@@ -8,7 +8,9 @@ import SpinnerLoad from './components/SpinnerLoad'
 //pages Back
 import Login from './pages/back/Login'
 import Dashboard from './pages/back/Dashboard' 
+import ConfHome from './pages/back/ConfHome' 
 import PageNotFound from './pages/PageNotFound' 
+
 
 import { BrowserRouter as Router, Route, Switch , withRouter, useHistory } from 'react-router-dom' 
 import { auth } from './firebase'
@@ -36,27 +38,25 @@ function BackApp  () {
             }
             else{
                 console.log('NO****')
-
+                setUserFirebase(true)
                 setUserData(null)
             }
         })
     }, [])
 
-    console.log('userFirebase' ,userFirebase )
-
-
-    return userFirebase !== false ? (
+    return userData !== false ? (
         <>
             <Router>
-
+                
                 <Header
                     userFirebase = {userFirebase[0]}
                 />      
                 <Switch>
                     { (window.location.pathname == '/backLogin' && userData ) ? <Dashboard/>  : (
                         <>
-                        <Route path = "/backLogin"     exact={true} component = { Login }  />
-                        <Route path = "/backDashboard" exact={true} component = { Dashboard }  />
+                            <Route path = "/backLogin"     exact={true} component = { Login }  />
+                            <Route path = "/backDashboard" exact={true} component = { Dashboard }  />
+                            <Route path = "/backConfHome"  exact={true} component = { ConfHome }  />
                         </>
                         
                         )
