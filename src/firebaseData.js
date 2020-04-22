@@ -9,7 +9,7 @@ export function GetDocumentWhere( collection , where , type )
                                               var dataTemp = doc.data()
                                               dataTemp.id  = doc.id
                                               return dataTemp
-                                          })
+                                        })
     return data
   }
   return fetch()
@@ -29,10 +29,19 @@ export function GetCollecion(collection)
   return fetch()
 }
 
+export function UpdateDocument( collection, id , object)
+{
+  const fetch = async () => {
+    await db.collection( collection ).doc( id ).update( object )
+    return true
+  }
+  return fetch()
+}
+
 export function DeleteDocument( collection, id )
 {
   const fetch = async () => {
-    const response = await db.collection( collection ).doc( id ).delete()
+    await db.collection( collection ).doc( id ).delete()
     return true
   }
   return fetch()

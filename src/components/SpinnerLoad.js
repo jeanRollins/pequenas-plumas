@@ -15,6 +15,7 @@ export default function SpinnerLoad(props){
             <Spinner animation="grow" variant="success" />
             <br/>
             <strong> Cargando... </strong> 
-        </div>
+         </div>
+
     )
 }

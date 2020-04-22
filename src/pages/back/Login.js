@@ -52,88 +52,84 @@ function Login(props){
     
     return(
 
-        <div>
-            <Container className="mt-3">
-              <Row>
-                <Col
-                    sm = {0} 
-                    md = {2}
-                    lg = {3}
-                    xl = {3}
-                >
+        <> 
+            <Col
+                sm = {0} 
+                md = {2}
+                lg = {3}
+                xl = {3}
+            >
 
-                </Col>
-                <Col
-                    sm = {12} 
-                    md = {8}
-                    lg = {6}
-                    xl = {6}    
-                >
-                    <Card className="text-center mt-5">
-                        <Card.Body className="text-center ">
-                            <Card.Title>Acces To Pequeñas Plumas </Card.Title>
+            </Col>
+            <Col
+                sm = {12} 
+                md = {8}
+                lg = {6}
+                xl = {6}    
+            >
+                <Card className="text-center mt-5">
+                    <Card.Body className="text-center ">
+                        <Card.Title>Acces To Pequeñas Plumas </Card.Title>
+                        
+                        <Form>
+                            <Form.Group align="left" controlId="formBasicEmail">
+                                <Form.Label >Email : </Form.Label>
+                                <Form.Control 
+                                    value={email} 
+                                    type="email" 
+                                    placeholder="Enter email" 
+                                    onChange={ e => setEmail(e.target.value)}
+                                />
+                                { (textEmail) ?  <p style={ styleTextError}> Email requerido. </p> : null } 
+                            </Form.Group>
+
+                            <Form.Group align="left" controlId="formBasicPassword">
+                                <Form.Label>Password : </Form.Label>
+                                <Form.Control
+                                    value={password} 
+                                    type="password" 
+                                    placeholder="Password" 
+                                    onChange={ e =>  setPassword(e.target.value)}
+                                />
+
+                                { (textPassword) ?   <p style={ styleTextError } > Password requerido. </p> : null } 
+                                { (textAuthFail) ?   <p style={ styleTextError } > Usuario o contraseña no valida. </p> : null } 
+
+                            </Form.Group>
                             
-                            <Form>
-                                <Form.Group align="left" controlId="formBasicEmail">
-                                    <Form.Label >Email : </Form.Label>
-                                    <Form.Control 
-                                        value={email} 
-                                        type="email" 
-                                        placeholder="Enter email" 
-                                        onChange={ e => setEmail(e.target.value)}
-                                    />
-                                   { (textEmail) ?  <p style={ styleTextError}> Email requerido. </p> : null } 
-                                </Form.Group>
+                            { (!btnSign) ? null : 
+                                <Button 
+                                    variant="primary" 
+                                    onClick = { (e) => { 
+                                        e.preventDefault() ; 
+                                        login( email , password ) } 
+                                    }  className="btn btn-success btn-block" type="submit">
+                                    Entrar
+                                </Button>
+                            }
 
-                                <Form.Group align="left" controlId="formBasicPassword">
-                                    <Form.Label>Password : </Form.Label>
-                                    <Form.Control
-                                        value={password} 
-                                        type="password" 
-                                        placeholder="Password" 
-                                        onChange={ e =>  setPassword(e.target.value)}
-                                    />
-
-                                   { (textPassword) ?   <p style={ styleTextError } > Password requerido. </p> : null } 
-                                   { (textAuthFail) ?   <p style={ styleTextError } > Usuario o contraseña no valida. </p> : null } 
-
-                                </Form.Group>
                                 
-                                { (!btnSign) ? null : 
-                                    <Button 
-                                        variant="primary" 
-                                        onClick = { (e) => { 
-                                            e.preventDefault() ; 
-                                            login( email , password ) } 
-                                        }  className="btn btn-success btn-block" type="submit">
-                                        Entrar
-                                    </Button>
-                                }
-
-                                 
-                                { (!btnSignLoading) ? null : 
-                                    <Button 
-                                        className="btn btn-success btn-block"
-                                        disabled
-                                    >
-                                        <Spinner
-                                            as="span"
-                                            animation="grow"
-                                            size="sm"
-                                            role="status"
-                                            aria-hidden="true"
-                                        />
-                                        Loading...
-                                    </Button>
-                                }                                
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                </Col>
-              </Row>
-            </Container>
+                            { (!btnSignLoading) ? null : 
+                                <Button 
+                                    className="btn btn-success btn-block"
+                                    disabled
+                                >
+                                    <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    Loading...
+                                </Button>
+                            }                                
+                        </Form>
+                    </Card.Body>
+                </Card>
+            </Col>
           
-        </div>
+        </>
     )
 }
 

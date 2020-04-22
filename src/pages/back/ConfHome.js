@@ -8,9 +8,19 @@ import SpinnerLoad from '../../components/SpinnerLoad'
 import Menu from '../../components/back/Menu'
 
 
-import { Container ,Row, Col, Card, Modal , Button,Spinner} from 'react-bootstrap'
+import { Container ,Row, Col, Form, Modal , Button,Spinner} from 'react-bootstrap'
 import  Title  from '../../components/Title'
-import {GetCollecion, AddCollecion, DeleteFileStorage, DeleteDocument} from '../../firebaseData'
+
+import { GetCollecion , AddCollecion  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
+
+import MediaQuery from '../../components/commons/MediaQuery'
+import {ToastsContainer, ToastsStore} from 'react-toasts'
+const styleBtnEliminar = {
+    position: 'absolute',
+    right: '4px',
+    top: '-8px'
+}
+
 
 function ConfHome(props){
 
@@ -19,6 +29,7 @@ function ConfHome(props){
     const [ stateModal , setStateModal ] = useState( false )
     const [ userFirebase , setUserFirebase ] = useState( false )
     const [ imagesCarousel , setImagesCarousel ] = useState( false )
+    const [ dataAbout , setDataAbout ] = useState( false )
 
     const [ btnCargar   , setBtnCargar ]   = useState( true )
     const [ btnCargando , setBtnCargando ] = useState( false )
@@ -30,18 +41,41 @@ function ConfHome(props){
     const [ imgTemp , setImgTemp ] = useState( '' )
     const [ idTemp  , setIdTemp  ] = useState( '' )
 
+    const [ headerTitle , setHeaderTitle ] = useState( '' )
+    const [ title , setTitle ] = useState( '' )
+    const [ content , setContent ] = useState( '' )
+
+    const [ textFailHeaderTitle , setTextFailHeaderTitle ] = useState( false )
+    const [ textFailTitle , setTextFailTitle] = useState( false )
+    const [ textFailContent , setTextFailContent ] = useState( false )
+    
+    const [ idAbout , setIdAbout ] = useState( false )
+
+
     const handleClose = () => setStateModal( false )
+
+    const Mobile  =  MediaQuery('mobile')
+    const Tablet  =  MediaQuery('tablet')
+    const Desktop =  MediaQuery('desktop')
+
     
     const userGet = async () => {
         
-        const data    =  await GetDocumentWhere('users', 'id' , auth.currentUser.uid )
-        const dataImg =  await GetCollecion('files_home_carousel')
+        const aboutData =  await GetDocumentWhere('about', 'key' , 'about' )
+        const data      =  await GetDocumentWhere('users', 'id' , auth.currentUser.uid )
+        const dataImg   =  await GetCollecion('files_home_carousel')
         
-        setImagesCarousel( dataImg.map( row => row ) )
-        setUserFirebase( data.map( row => row ) )
+        await setDataAbout( aboutData.map( row => row ) )
+        await setImagesCarousel( dataImg.map( row => row ) )
+        await setUserFirebase( data.map( row => row ) )
+        await setIdAbout( aboutData[0].id )
+
+        setHeaderTitle( aboutData[0].subtitle ) 
+        setTitle( aboutData[0].title ) 
+        setContent( aboutData[0].about )
     }
 
-    const deleteImage = React.useCallback( async (  ) => {
+    const deleteImage = React.useCallback( async () => {
         
         setBtnEliminar(false)
         setBtnCargandoEliminar(true)
@@ -54,9 +88,8 @@ function ConfHome(props){
             setBtnEliminar(true)
             setBtnCargandoEliminar(false)
             setStateModal( !stateModal )
-        } catch (error) {
-            console.log('error : ',error)
-        }
+        } 
+        catch (error) {}
     }, [ stateModal ] )
 
     const confirmModal = React.useCallback( async ( img , id ) => {
@@ -106,8 +139,6 @@ function ConfHome(props){
                     date     : dateNow ,
                     rutePath : 'home/' + inputFile.name
                 } 
-
-                console.log('File available at', downloadURL); 
                 const responseAdd = AddCollecion( 'files_home_carousel' , collectionCarousel )
 
                 userGet()
@@ -120,27 +151,65 @@ function ConfHome(props){
             })
             
         }) 
-
-        
     }
-    
+
+    const updateAbout = async () => {
+        
+        if( !headerTitle ){
+            setTextFailHeaderTitle(true)
+            return false 
+        }
+        setTextFailHeaderTitle(false)
+
+        if( !title ){
+            setTextFailTitle(true)
+            return false 
+        }
+        setTextFailTitle(false)
+
+        if( !content ){
+            setTextFailContent(true)
+            return false 
+        }
+        setTextFailContent(false)
+
+        try {
+
+            let  dataForUpdate = {
+                about    : content     ,
+                key      : 'about'     ,
+                subtitle : headerTitle , 
+                title    : title
+            }
+            UpdateDocument('about' , idAbout , dataForUpdate  )
+            ToastsStore.success("Actualizado realizado :) " , )
+        } 
+        catch (error) {
+            ToastsStore.warning("Error : actualice más tarde :( " )
+            console.log('error ** : ' + error )
+            
+        }
+
+    }
+
     useEffect( () => {
         if( auth.currentUser) {
-
-            setUser( auth.currentUser )
             userGet()
+            setUser( auth.currentUser )
         }
         else{
             props.history.push('/backLogin')
         }
-    },[])
+    },[ ])
     
-    return  (!userFirebase) ? 
+    
+    
+    return  (!userFirebase) &&  ( !dataAbout !== false) ? 
         (
             <SpinnerLoad/>
         ) : (
-        <>
-            
+        <>  
+            <ToastsContainer position={ToastsStore.TOP_LEFT} store={ToastsStore}/>
             <Modal show={stateModal} onHide={ handleClose }>
                 <Modal.Header closeButton>
                     <Modal.Title>{'Imagen'}</Modal.Title>
@@ -176,25 +245,17 @@ function ConfHome(props){
                 </Modal.Footer>
             </Modal>
         
-            <Container className="my-4">
+            <Container className="mt-4 mb-3">
                 
                 <Row>
-                    <Col 
-                        sm = {0} 
-                        md = {0}
-                        lg = {3}
-                        xl = {3}
-                    >
-                        <Card className="effectShadow p-3">
-                            <Menu />
-                        </Card>    
-                    </Col>
+
                     <Col 
                         sm = {12} 
                         md = {12}
-                        lg = {9}
-                        xl = {9}
-                        className="p-3"
+                        lg = {12}
+                        xl = {12}
+                        className=" p-3"
+                        style={{borderRadius : '8px'}}
                     >   
                         <Title nameTitle = "Carousel Home" />
                         <Container>
@@ -207,10 +268,12 @@ function ConfHome(props){
                                             Agregar imagen a carousel : 
                                         </label>
                                         <input 
+                                            className = "py-2 "
                                             type = "file" 
                                             onChange = { e  => setInputFile( e.target.files[0] )  } 
                                         />   
                                     </div> 
+                                    
                                 </Col>
                                 <Col className="mt-4"> 
                                     { (!btnCargar) ? null : 
@@ -249,35 +312,54 @@ function ConfHome(props){
                                 </Col>
                             </Row>
                         </Container>
-
+                        
+                        <hr/>
                         <Container>
                         <h5 className="my-4" style={{color : global.COLOR_TEXT}}> Imagenes carousel :</h5>
                             <Row>
                                 { Object.keys(imagesCarousel).map( data => (
                                     <Col 
                                         sm = {2} 
-                                        md = {2}
+                                        md = {3}
                                         lg = {3}
                                         xl = {3}
                                         key =  {data}
                                         className="my-2"
                                     >
                                         <a href="#" >
+
+                                            <Mobile> 
+                                                <img 
+                                                    src = {imagesCarousel[data].file} 
+                                                    style = {{ width : '100%' , height : '200px'}}
+                                                /> 
+                                            </Mobile>
+
+                                            <Tablet> 
+                                                <img 
+                                                    src = {imagesCarousel[data].file} 
+                                                    style = {{ width : '100%' , height : '150px'}}
+                                                /> 
+                                            </Tablet>
+
+                                            <Desktop> 
+                                                <img 
+                                                    src = {imagesCarousel[data].file} 
+                                                    style = {{ width : '100%' , height : '120px'}}
+                                                /> 
+                                            </Desktop>
+
+                                            
+
                                             <Button 
-                                                style = {{  position : 'absolute',
-                                                        }}
-                                                variant = "danger"
-                                                size    = "sm"
-                                                onClick = { e =>  confirmModal( imagesCarousel[data].rutePath , imagesCarousel[data].id) }
+                                                className = "py-2 px-3"
+                                                style     = {styleBtnEliminar}
+                                                variant   = "danger"
+                                                size      = "xl"
+                                                onClick   = { e =>  confirmModal( imagesCarousel[data].rutePath , imagesCarousel[data].id) }
                                             >
                                                 x
                                             </Button>
-                                            
-                                            <img 
-                                                src = {imagesCarousel[data].file} 
-                                                style = {{ width : '100%' , height : '150px' }}
-                                                
-                                            />
                                         </a>
                                     
                                     </Col>
@@ -285,12 +367,75 @@ function ConfHome(props){
                        
                             </Row>
                         </Container>
+                        <hr/>
+                        <Container>
+                        <Title nameTitle = "Acerca de mí" />
+                            <Row className="mt-3">
+                                <Col 
+                                      sm = {12} 
+                                      md = {12}
+                                      lg = {8}
+                                      xl = {8}>
+                                    <Form>
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>Header</Form.Label>
+                                            <Form.Control 
+                                                type="text" 
+                                                value = {headerTitle } 
+                                                onChange = { e => setHeaderTitle( e.target.value)}
+                                            />
+                                            { (textFailHeaderTitle) && (
+                                                <p style = {styleFail}>Título header requerido. </p>
+                                            ) }
+                                        </Form.Group>
+
+                                        <Form.Group controlId="formBasicPassword">
+                                            <Form.Label>Título</Form.Label>
+                                            <Form.Control 
+                                                type  = "text"  
+                                                value = { title} 
+                                                onChange = { e => setTitle( e.target.value)}
+                                            />
+                                            { (textFailTitle) && (
+                                                <p style = {styleFail}>Título header requerido. </p>
+                                            )}
+                                        </Form.Group>
+
+                                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Contenido</Form.Label>
+                                            <Form.Control 
+                                                as="textarea" 
+                                                rows="3" 
+                                                onChange = { e => setContent( e.target.value)}
+                                                value = { content  }     
+                                            />
+                                            { (textFailContent) && (
+                                                <p style = {styleFail}> Contenido requerido.  </p>
+                                            ) }
+                                        </Form.Group>
+                                        
+                                        <Button variant="primary" onClick = { e  =>  { 
+                                                    e.preventDefault()
+                                                    updateAbout()
+                                                } } > Actualizar </Button>
+                                    </Form>
+                                    
+                                </Col>
+                              
+                            </Row>
+                        </Container>
                         
                     </Col>
+
+                 
                 </Row>
             </Container>
         </>
     )
+}
+
+const styleFail = {
+    color : 'red' 
 }
 
 export default withRouter(ConfHome) 

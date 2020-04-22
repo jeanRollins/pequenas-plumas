@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav } from 'react-bootstrap'
+import { Nav, Card } from 'react-bootstrap'
 
 import { menuItems } from '../../components/back/Header'
 import { withRouter,Link } from 'react-router-dom'
@@ -19,8 +19,8 @@ export default  function Menu (){
     }
 
     return (
-        <>
-            <Nav defaultActiveKey="/home" className="flex-column">
+        <Card style={{borderRadius: '8px'}} className="mt-5 effectShadow p-3 d-none d-sm-block d-xs-block mr-4">
+            <Nav defaultActiveKey="/home" className="flex-column ">
                  { menuItems.map( (data,index) => {
 
                     return (
@@ -34,8 +34,8 @@ export default  function Menu (){
                         </Link>
                     )
                 })}
-            </Nav>
-
-        </>
+            </Nav>                
+        </Card>
+            
     )
 }

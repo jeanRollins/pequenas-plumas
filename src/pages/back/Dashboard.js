@@ -5,9 +5,8 @@ import {auth} from '../../firebase'
 import {GetDocumentWhere} from '../../firebaseData'
 
 import SpinnerLoad from '../../components/SpinnerLoad'
-import Menu from '../../components/back/Menu'
 
-import { Container ,Row, Col, Table, Card} from 'react-bootstrap'
+import { Container ,Row, Col, Table} from 'react-bootstrap'
 
 
 import MyBarChart from '../../components/back/MyBarChart'
@@ -35,6 +34,7 @@ const Dashboard = (props) => {
             userGet()
         }
         else{
+            {console.log('**EEREE')}
             props.history.push('/backLogin')
         }
     },[])
@@ -49,20 +49,10 @@ const Dashboard = (props) => {
                 
                 <Row>
                     <Col 
-                        sm = {0} 
-                        md = {0}
-                        lg = {3}
-                        xl = {3}
-                    >
-                        <Card className="effectShadow p-3">
-                            <Menu />
-                        </Card>    
-                    </Col>
-                    <Col 
                         sm = {12} 
                         md = {6}
-                        lg = {4}
-                        xl = {4}
+                        lg = {6}
+                        xl = {6}
                         className="p-3"
                     >
                         <MyBarChart className="mt-3"/>
@@ -71,8 +61,8 @@ const Dashboard = (props) => {
                     <Col className="my-4 px-3"
                         sm = {12} 
                         md = {6}
-                        lg = {5}
-                        xl = {5}
+                        lg = {6}
+                        xl = {6}
                     >
                         <h5 className="my-4" style={{color : global.COLOR_TEXT}}>Ultimas Ventas : </h5>
 
@@ -81,17 +71,16 @@ const Dashboard = (props) => {
                                 <tr>
                                     <th>#</th>
                                     <th>Ave</th>
-                                    <th>Monto</th>
+                                    <th>Cantidad</th>
                                     <th>Fecha</th>
                                     <th>Total</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
                                     <td>Loro</td>
-                                    <td>$10.000</td>
+                                    <td>2</td>
                                     <td>20/02/2020</td>
                                     <td>$10.000</td>
 
@@ -99,21 +88,21 @@ const Dashboard = (props) => {
                                 <tr>
                                     <td>2</td>
                                     <td>Catita</td>
-                                    <td>$10.000</td>
+                                    <td>1</td>
                                     <td>20/02/2020</td>
                                     <td>$10.000</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Canario</td>
-                                    <td>$10.000</td>
+                                    <td>1 </td>
                                     <td>20/02/2020</td>
                                     <td>$10.000</td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>Paloma</td>
-                                    <td>$10.000</td>
+                                    <td>3</td>
                                     <td>20/02/2020</td>
                                     <td>$10.000</td>
                                 </tr>
