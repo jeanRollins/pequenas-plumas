@@ -15,6 +15,23 @@ export function GetDocumentWhere( collection , where , type )
   return fetch()
 }
 
+export function GetDocumentWhereConditionals( collection , where , type,  where2 , type2 )
+{
+  const fetch = async () => {
+    const response = await db.collection( collection )
+    .where( where  , '==' , type )
+    .where( where2 , '==' , type2 )
+    .get()
+    const data     =  response.docs.map( doc =>  {
+                                              var dataTemp = doc.data()
+                                              dataTemp.id  = doc.id
+                                              return dataTemp
+                                        })
+    return data
+  }
+  return fetch()
+}
+
 export function GetCollecion(collection)
 {
   const fetch = async () => {
@@ -55,7 +72,6 @@ export function AddCollecion(collection, document)
   }
   return fetch()
 }
-
 
 //functions Storage
 export function DeleteFileStorage(rute)

@@ -10,6 +10,9 @@ import AvesTipo from './pages/AvesTipo'
 import About from './pages/About'
 import Gallery from './pages/Gallery'
 import AveDescripcion from './pages/AveDescripcion'
+import Contact from './pages/Contact'
+import PageNotFound from './pages/PageNotFound' 
+
 
 import { BrowserRouter as Router , Route , Switch } from 'react-router-dom'
 import ButtonFloat from './components/ButtonFloat'
@@ -24,12 +27,14 @@ function App(props) {
           <ButtonFloat/>
           <Switch>
             
-            <Route path="/" exact component={Home} /> 
-            <Route path="/avestipo" exact component={AvesTipo} />  
-            <Route path="/gallery"  exact component={Gallery} /> 
-            <Route path="/about" exact component={About} />
-            
-            <Route path="/:type" children={<AveDescripcion/>} />
+            <Route path="/"         exact component = { Home } /> 
+            <Route path="/avestipo" exact component = { AvesTipo } />  
+            <Route path="/gallery"  exact component = { Gallery } /> 
+            <Route path="/about"    exact component = { About } />
+            <Route path="/contact"  exact component = { Contact } />
+            <Route path="/:type"    children = { <AveDescripcion/> } />
+
+            <Route path = "*"  component = { PageNotFound }  />
           </Switch>
       </div>
 

@@ -6,7 +6,7 @@ import { withRouter,Link } from 'react-router-dom'
 
 import {logout} from '../../libs/Login'
 
-import { useMediaQuery }  from 'react-responsive'
+import MediaQuery from '../../components/commons/MediaQuery'
 
 
 export const menuItems = [
@@ -19,32 +19,21 @@ export const menuItems = [
     name  : 'Conf Home' 
   },
   {
-    to    : '/backConfHome' ,
-    name  : 'Aves Tipo' 
+    to    : '/backConfAvesTipo' ,
+    name  : 'Conf Aves Tipo' 
   },
   {
-    to    : '/backConfHome' ,
-    name  : 'About Gallery' 
+    to    : '/backConfAbout' ,
+    name  : 'Conf About' 
   }
 ]
 
 
 function Header (props) { 
 
-  const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 992 })
-    return isDesktop ? children : null
-  }
-
-  const Tablet = ({ children }) => {
-      const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 })
-      return isTablet ? children : null
-  }
-
-  const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 767 })
-    return isMobile ? children : null
-  }
+  const Mobile  =  MediaQuery('mobile')
+  const Tablet  =  MediaQuery('tablet')
+  const Desktop =  MediaQuery('desktop')
 
   return (
     
@@ -107,6 +96,21 @@ function Header (props) {
 
                       <NavItem className="my-2">
                         <Link 
+                          to="/backConfAvesTipo" 
+                          className="navLink  " > 
+                          Conf Aves Tipo   
+                        </Link>
+                      </NavItem>
+                      <NavItem className="my-2">
+                        <Link 
+                          to="/backConfAbout" 
+                          className="navLink  " > 
+                          Conf About  
+                        </Link>
+                      </NavItem>
+
+                      <NavItem className="my-2">
+                        <Link 
                           to="/backLogin" 
                           className="navLink  " 
                           onClick = {(e) => { 
@@ -130,14 +134,14 @@ function Header (props) {
                   <Navbar.Collapse id="basic-navbar-nav " align="left" >
                     <Nav className="mr-auto ">
               
-                      <NavItem className="m-3">
+                      <NavItem className="m-2">
                         <Link 
                           to="/backDashboard" 
                           className="navLink  " > 
                           Home   
                         </Link>
                       </NavItem>
-                      <NavItem className="m-3">
+                      <NavItem className="m-2">
                         <Link 
                           to="/backConfHome" 
                           className="navLink  " > 
@@ -145,12 +149,26 @@ function Header (props) {
                         </Link>
                       </NavItem>
 
-                      <NavItem className="m-3">
+                      <NavItem className="m-2">
                         <Link 
-                           to="/backLogin" 
+                          to="/backConfAvesTipo" 
+                          className="navLink  " > 
+                          Conf Aves Tipo   
+                        </Link>
+                      </NavItem>
+                      <NavItem className="m-2">
+                        <Link 
+                          to="/backConfAbout" 
+                          className="navLink  " > 
+                          Conf About  
+                        </Link>
+                      </NavItem>
 
-                          className="navLink  " 
-                          onClick = {(e) => { 
+                      <NavItem className="m-2">
+                        <Link 
+                          to="/backLogin"
+                          className="navLink" 
+                          onClick = { (e) => { 
                             e.preventDefault() ; 
                             logout() ;
                             props.history.push('/backLogin')

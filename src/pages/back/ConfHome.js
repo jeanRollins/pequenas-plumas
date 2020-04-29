@@ -2,16 +2,13 @@ import React, {useState, useEffect} from 'react'
 import {  withRouter } from 'react-router-dom' 
 
 import {auth, storage} from '../../firebase'
-import {GetDocumentWhere} from '../../firebaseData'
 
 import SpinnerLoad from '../../components/SpinnerLoad'
-import Menu from '../../components/back/Menu'
-
 
 import { Container ,Row, Col, Form, Modal , Button,Spinner} from 'react-bootstrap'
 import  Title  from '../../components/Title'
 
-import { GetCollecion , AddCollecion  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
+import {GetDocumentWhere , GetDocumentWhereConditionals , AddCollecion  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
 
 import MediaQuery from '../../components/commons/MediaQuery'
 import {ToastsContainer, ToastsStore} from 'react-toasts'
@@ -63,7 +60,7 @@ function ConfHome(props){
         
         const aboutData =  await GetDocumentWhere('about', 'key' , 'about' )
         const data      =  await GetDocumentWhere('users', 'id' , auth.currentUser.uid )
-        const dataImg   =  await GetCollecion('files_home_carousel')
+        const dataImg   =  await GetDocumentWhereConditionals( 'files_home_carousel', 'type' , 'home' , 'status' , 1 )
         
         await setDataAbout( aboutData.map( row => row ) )
         await setImagesCarousel( dataImg.map( row => row ) )
@@ -137,7 +134,8 @@ function ConfHome(props){
                     legend   : 'Lorem Ipzum dolor' ,
                     status   : 1 ,
                     date     : dateNow ,
-                    rutePath : 'home/' + inputFile.name
+                    rutePath : 'home/' + inputFile.name ,
+                    type     : 'home'
                 } 
                 const responseAdd = AddCollecion( 'files_home_carousel' , collectionCarousel )
 
@@ -182,7 +180,7 @@ function ConfHome(props){
                 title    : title
             }
             UpdateDocument('about' , idAbout , dataForUpdate  )
-            ToastsStore.success("Actualizado realizado :) " , )
+            ToastsStore.success("Actualizado realizado : ) " )
         } 
         catch (error) {
             ToastsStore.warning("Error : actualice más tarde :( " )

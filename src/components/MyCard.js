@@ -1,7 +1,7 @@
 import db from '../firebase'
 import React, { useState,  useEffect } from 'react'
-import {Card, Button, Container ,Row, Col , CardColumns}  from 'react-bootstrap'
-import { useMediaQuery }  from 'react-responsive'
+import {Card, Button, Container ,Row, Col }  from 'react-bootstrap'
+import MediaQuery  from '../components/commons/MediaQuery'
 import {Link} from 'react-router-dom'
 
 export function MyCard(props){
@@ -20,118 +20,96 @@ export function MyCard(props){
 }
 
 
-export function CardGroup(props) {
+export function CardResponsive(props) {
 
-    const Desktop = ({ children }) => {
-        const isDesktop = useMediaQuery({ minWidth: 992 })
-        return isDesktop ? children : null
-    }
-
-    const Tablet = ({ children }) => {
-        const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 })
-        return isTablet ? children : null
-    }
-      const Mobile = ({ children }) => {
-        const isMobile = useMediaQuery({ maxWidth: 767 })
-        return isMobile ? children : null
-    }
-
-    const [about , setAbout] = useState([])
-    const [aboutText , setAboutText] = useState([])
-    const [loop , setLoop] = useState(true)
-    
-    const fetchApi = async () => {
-        
-        const data = await db.collection(props.type).get()
-        setAbout( data.docs.map( doc =>  doc.data() ))
-
-        console.log('about' , about)
-        
-        var description = Object.keys(about).map( data => {
-            let _about = about[data]
-            return  (<Col 
-                        key = { _about.image }
-                        sm  = { 12} 
-                        md  = { 4 }
-                        lg  = { 3 } 
-                        xl  = { 3 } 
-                    >
-                        <Card key={_about.image}>
-                      
-                            <Desktop>
-                                <Card.Img 
-                                    variant="top" 
-                                    style={ {height : '150px'} } 
-                                    src = { _about.image } />
-                            </Desktop>
-
-                            <Tablet> 
-                                <Card.Img 
-                                    variant="top" 
-                                    style={ {height : '150px'} } 
-                                    src = { _about.image } 
-                                    /> 
-                            </Tablet>
-
-                            <Mobile> 
-                                <Card.Img 
-                                    variant="top"  
-                                    src = { _about.image } 
-                                    /> 
-                            </Mobile>
-                            <Card.Body>
-                                <Card.Title>{ _about.title }</Card.Title>
-
-                                <Desktop> 
-                                    <Card.Text 
-                                        style={{ height : '210px' }}
-                                        > 
-                                        { _about.short_description } 
-                                    </Card.Text> 
-                                </Desktop>
-
-                                <Tablet> 
-                                    <Card.Text 
-                                        style={{ height : '210px' }}
-                                        >
-                                        { _about.short_description } 
-                                    </Card.Text> 
-                                </Tablet>
-                                <Mobile> 
-                                    <Card.Text 
-                                    > 
-                                    { _about.short_description } 
-                                    </Card.Text> 
-                                </Mobile>
-
-                                <Link 
-                                    to={ _about.url }  
-                                    className="" 
-                                    > 
-                                    Tipos de Aves 
-                                </Link>
-
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    )      
-        })
-        setAboutText(description)
-        setLoop(false)
-    }
-
-    useEffect( () => {
-        
-        fetchApi()
-   
-    }, [loop])
+    const Desktop = MediaQuery('desktop')
+    const Tablet  = MediaQuery('tablet')
+    const Mobile  = MediaQuery('mobile')
 
     return(
-        <Container className="mt-5">
-            <Row>
-                {aboutText}
-            </Row>
-        </Container>
+        <Card
+            className = "my-3  effectShadowStatic textColorPrimary"
+        >
+            <Desktop>
+                <Card.Img 
+                    variant="top" 
+                    style={ {height : '150px'} } 
+                    src = { props.image } />
+            </Desktop>
+
+            <Tablet> 
+                <Card.Img 
+                    variant="top" 
+                    style={ {height : '150px'} } 
+                    src = { props.image } 
+                    /> 
+            </Tablet>
+
+            <Mobile> 
+                <Card.Img 
+                    variant="top"  
+                    src = { props.image } 
+                    /> 
+            </Mobile>
+            <Card.Body>
+                <Card.Title>{ props.name }</Card.Title>
+
+                <Desktop> 
+                    <Card.Text 
+                        style={{ height : '210px' }}
+                        > 
+                        { props.shortDescription } 
+                    </Card.Text> 
+                </Desktop>
+
+                <Tablet> 
+                    <Card.Text 
+                        style={{ height : '210px' }}
+                        >
+                        { props.shortDescription } 
+                    </Card.Text> 
+                </Tablet>
+                <Mobile> 
+                    <Card.Text 
+                    > 
+                    { props.shortDescription } 
+                    </Card.Text> 
+                </Mobile>
+
+                <Link 
+                    to={ props.url }  
+                    className="" 
+                    > 
+                    {"Ver más"}
+                </Link>
+
+            </Card.Body>
+        </Card>
+    )
+}
+
+export function CardInline(props){
+
+    return(
+        <div className="card mb-3 textColorPrimary effectShadowStatic" >
+            <div className="row no-gutters">
+                <div className="col-md-4">
+                    <img 
+                        alt=""
+                        src ={ props.img }
+                        className = "card-img" 
+                        style = {{ height : '250px' }} 
+                    />
+                </div>
+                <div className="col-md-8">
+                    <div className="card-body">
+                        <h5 className="card-title"> { props.title } </h5>
+                        <p className="card-text">{ props.content }.</p>
+                        <p className="card-text"><small className="text-muted">{ props.textMuted }</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -171,8 +149,8 @@ export function CardAbout(){
     }, [loop])
 
     return(
-        <div>
+        <>
             {aboutText}
-        </div>
+        </>
     )
 }

@@ -1,50 +1,85 @@
 import React, {useState ,useEffect} from 'react'
 
 //import Title from '../components/Title';
-import { Container ,Row, Col} from 'react-bootstrap'
-import  {CardGroup} from '../components/MyCard'
+import { Container , Row , Col} from 'react-bootstrap'
+import  {CardResponsive} from '../components/MyCard'
 import SpinnerLoad from '../components/SpinnerLoad'
 import FooterComponent from '../components/FooterComponent'
+import {GetCollecion} from '../firebaseData'
+
+
 
 
 function AvesTipo() {
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [cards, setCards] = useState([])
-  const [loop , setLoop] = useState(true)
+  const [dataBirds , setDataBirds] = useState(false)
+ 
+  const fetchData = async () => { 
+    
+    try {
+      const collection = await GetCollecion('birds_type')
+      await setDataBirds( collection )
   
-  const collection = 'birds_type'
-
-  const fetchData = async () => {    
-    setLoop(false)
-    setIsLoading(true)
-
-    var _cards = <CardGroup
-                  type={ collection }
-                />
-    setCards(_cards)
-    setIsLoading(false)
-
+    } 
+    catch (error) {
+      console.log(error);
+    }
   }
-
   
-  useEffect(  () => {
-     fetchData()
-  },[loop ] )
+  useEffect( () => {
+    fetchData()
+  },[] )
   
-  return (
-    <div>
-      {isLoading ? (
-        <SpinnerLoad/>
-      ) : (
+  return ( dataBirds !== false) ?  (
+    <>
+      <Container  className="mt-5">
+        <Row>
+          {dataBirds.map( (row) => (
 
-        <div>
-          {cards}
-          <FooterComponent/>
-        </div>
-      )}
-    </div>
+            <Col 
+              key   = { row.id }
+              sm  = { 12} 
+              md  = { 4 }
+              lg  = { 3 } 
+              xl  = { 3 } 
+              >
+              <CardResponsive
+                image = { row.image }
+                name  = { row.name } 
+                url   = { row.url } 
+                shortDescription = { row.short_description }
 
+              />
+            </Col>
+
+          ))}
+
+          {dataBirds.map( (row) => (
+
+            <Col 
+              key   = { row.id }
+              sm  = { 12} 
+              md  = { 4 }
+              lg  = { 3 } 
+              xl  = { 3 } 
+              >
+              <CardResponsive
+                image = { row.image }
+                name  = { row.name } 
+                url   = { row.url } 
+                shortDescription = { row.short_description }
+
+              />
+            </Col>
+
+          ))}
+        </Row>
+      </Container>
+      <FooterComponent/>
+    </>
+
+  ) : (
+    <SpinnerLoad/>
   )
 }
 

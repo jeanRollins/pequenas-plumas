@@ -1,6 +1,7 @@
 import React from 'react'
-
 import { FaWhatsapp } from 'react-icons/fa'
+import { CELL_NUMBER } from '../globals'
+
 
 export default function ButtonFloat(){
     
@@ -22,7 +23,7 @@ export default function ButtonFloat(){
     return(
         <a  
             style={style}
-            href="https://api.whatsapp.com/send?phone=56932495410&text=." 
+            href={"https://api.whatsapp.com/send?phone=569" + CELL_NUMBER + "$&text=."} 
             className="float" 
             target="_blank">
             <FaWhatsapp style={{marginTop:'7px'}}/>

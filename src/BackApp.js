@@ -10,13 +10,16 @@ import Login from './pages/back/Login'
 import Dashboard from './pages/back/Dashboard' 
 import ConfHome from './pages/back/ConfHome' 
 import PageNotFound from './pages/PageNotFound' 
+import ConfAbout from './pages/back/ConfAbout' 
+import ConfAvesTipo from './pages/back/ConfAvesTipo' 
+
 
 import { BrowserRouter as Router, Route, Switch , withRouter, useHistory } from 'react-router-dom' 
 import { auth } from './firebase'
 import {GetDocumentWhere} from './firebaseData'
 import Menu from './components/back/Menu'
 
-import { Container ,Row, Col, Table} from 'react-bootstrap'
+import { Container ,Row, Col} from 'react-bootstrap'
 
 
 function BackApp  () {
@@ -54,7 +57,7 @@ function BackApp  () {
             <Header
                 userFirebase = {userFirebase[0]}
             />      
-            <Container className="my-4">
+            <Container className="my-4" style = {{ backgroundColor : '#e6e6e6' }}>
                 
                 <Row>
                     
@@ -88,6 +91,9 @@ function BackApp  () {
                                                 <Route path = "/backDashboard" exact component = { Dashboard }  />
                                                 <Route path = "/backLogin"     exact component = { Login }  />
                                                 <Route path = "/backConfHome"  exact component = { ConfHome }  />
+                                                <Route path = "/backConfAbout"  exact component = { ConfAbout }  />
+                                                <Route path = "/backConfAvesTipo"  exact component = { ConfAvesTipo }  />
+                                                
                                             </> 
                                             <Route path = "*"  component = { PageNotFound }  />
                                         </Switch>

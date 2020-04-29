@@ -1,9 +1,10 @@
+
 *{
     font-family: 'Roboto', sans-serif;
 }
 
 .navLink{
-    color : #fff 
+    color : #fff    
 }
 
 .navLink:hover{
@@ -29,6 +30,12 @@
     box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
 }
 
+.effectShadowStatic{
+    -webkit-box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
+    -moz-box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
+    box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
+}
+
 @media (max-width: 480px) { 
     
     .effectShadow{
@@ -42,3 +49,5 @@
 
     }
 }
+
+

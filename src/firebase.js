@@ -7,7 +7,7 @@ import 'firebase/storage'
 
 var firebaseConfig = {
 
-};
+  };
 
 firebase.initializeApp(firebaseConfig);
 

@@ -1,14 +1,32 @@
 import React from 'react' 
-import { slide as Menu } from 'react-burger-menu'
 import {LOGO} from '../globals'
 //Bootstrap Components
-import {Navbar, Nav,NavDropdown, NavItem} from 'react-bootstrap'
+import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import { FaHome ,FaGripHorizontal ,FaUsers, FaImage } from "react-icons/fa";
 
 
 
 function Header () {
+
+  const routes = [
+    {
+      name : 'Home' ,
+      url  : '/'
+    },
+    {
+      name : 'Tipos de Aves' ,
+      url  : '/avestipo'
+    },
+    {
+      name : 'Nosotros' ,
+      url  : '/about'
+    },
+    {
+      name : 'Contacto' ,
+      url  : '/contact'
+    },
+  ]
 
   return (
 
@@ -26,29 +44,20 @@ function Header () {
 
           <Nav className="mr-auto">
             
-            <NavItem className="m-2">
-              <Link 
-                to="/" 
-                className="navLink  " > 
-                Home   
-              </Link>
-            </NavItem>
+            {routes.map( (row) => (
+                <NavItem 
+                  key = { row.name }  
+                  className="m-2"
+                >
+                  <Link 
+                    to = { row.url } 
+                    className="navLink  " > 
+                    { row.name }   
+                  </Link>
+                </NavItem>
+            ))}
 
-            <NavItem className="m-2">
-              <Link 
-                to="/avestipo"  
-                className="navLink  " > 
-                Tipos de Aves 
-              </Link>
-            </NavItem>
-
-            <NavItem  className="m-2">
-              <Link 
-                to="/about"  
-                className="navLink  "> 
-                Nosotros 
-              </Link>
-            </NavItem>
+          
            
           </Nav>
         

@@ -1,0 +1,22 @@
+
+/* Desktop */
+@media (min-width: 1200px) { 
+    .imgSlider{
+        height: 600px ;
+    }
+}  
+
+/* Tablet and desktop small */
+@media (min-width: 768px) and (max-width: 1199px) { 
+    .imgSlider{
+        height: 600px ;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 480px) { 
+    .imgSlider{
+        height: 300px ;
+    }    
+}

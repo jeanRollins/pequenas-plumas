@@ -13,7 +13,7 @@ export default function MapDirection(){
             frameBorder={0} 
             style={ style } 
             allowFullScreen 
-            ariaHidden="false" 
+            aria-hidden="false" 
             tabIndex={0}>    
         </iframe>
     )

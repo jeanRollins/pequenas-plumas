@@ -4,7 +4,7 @@ export default function Title(props){
     
     return( 
         <h3 
-            style={ getStyle() }  
+            style={ style }  
             align="center"
         >
             {props.nameTitle}
@@ -13,14 +13,12 @@ export default function Title(props){
 
 }
 
-function getStyle(){
-    
-    const style = {
-        color : global.COLOR_TEXT, 
-        margin : '10px 0px 10px 0px' 
-    }
 
-    return style 
+    
+const style = {
+    color : global.COLOR_TEXT, 
+    margin : '10px 0px 10px 0px' 
 }
+
 
 
