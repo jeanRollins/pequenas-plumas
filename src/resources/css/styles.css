@@ -36,6 +36,17 @@
     box-shadow: 10px 10px 31px -19px rgba(0,0,0,0.67);
 }
 
+.imgHover{
+    border: 1px solid #006909;
+    border-radius: 5px;
+}
+
+.imgHover:hover{
+    opacity: 0.8;
+    border: 1px solid #ffd900;
+
+}
+
 @media (max-width: 480px) { 
     
     .effectShadow{

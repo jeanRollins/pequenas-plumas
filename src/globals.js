@@ -27,11 +27,25 @@ export function GetDateTime()
     return dateNow
 }
 
-export function showHideElement(id)
-{
-    let element = document.querySelector('#' + id )
-    element.style.display = 'block' 
-    setTimeout(() => {
-        element.style.display = 'none' 
-    }, 4000);
+export function CreateUrl( type , urlBase , urlKey ){
+    type = RemoveAcents( type )
+    type = type.replace( ' ','' )
+
+
+    if( urlKey == 'url' )
+        return '/' + urlBase + '/' + type
+    if( urlKey == 'key' )
+        return type
+    
+}
+
+export function RemoveAcents( data ) {
+
+    data = data.replace('á','a')
+    data = data.replace('é','e')
+    data = data.replace('í','i')
+    data = data.replace('ó','o')
+    data = data.replace('ú','u')
+    data = data.replace('ñ','n')
+    return data
 }

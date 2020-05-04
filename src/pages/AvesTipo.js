@@ -1,14 +1,10 @@
 import React, {useState ,useEffect} from 'react'
 
-//import Title from '../components/Title';
 import { Container , Row , Col} from 'react-bootstrap'
 import  {CardResponsive} from '../components/MyCard'
 import SpinnerLoad from '../components/SpinnerLoad'
 import FooterComponent from '../components/FooterComponent'
 import {GetCollecion} from '../firebaseData'
-
-
-
 
 function AvesTipo() {
 
@@ -19,7 +15,6 @@ function AvesTipo() {
     try {
       const collection = await GetCollecion('birds_type')
       await setDataBirds( collection )
-  
     } 
     catch (error) {
       console.log(error);
@@ -42,13 +37,12 @@ function AvesTipo() {
               md  = { 4 }
               lg  = { 3 } 
               xl  = { 3 } 
-              >
+            >
               <CardResponsive
                 image = { row.image }
                 name  = { row.name } 
                 url   = { row.url } 
                 shortDescription = { row.short_description }
-
               />
             </Col>
 

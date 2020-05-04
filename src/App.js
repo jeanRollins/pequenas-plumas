@@ -32,7 +32,7 @@ function App(props) {
             <Route path="/gallery"  exact component = { Gallery } /> 
             <Route path="/about"    exact component = { About } />
             <Route path="/contact"  exact component = { Contact } />
-            <Route path="/:type"    children = { <AveDescripcion/> } />
+            <Route path="/avestipo/:type"    children = { <AveDescripcion/> } />
 
             <Route path = "*"  component = { PageNotFound }  />
           </Switch>

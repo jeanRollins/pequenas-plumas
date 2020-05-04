@@ -18,7 +18,6 @@ const styleBtnEliminar = {
     top: '-8px'
 }
 
-
 function ConfHome(props){
 
     const [ user , setUser ] = useState( null )
@@ -50,12 +49,10 @@ function ConfHome(props){
 
 
     const handleClose = () => setStateModal( false )
-
     const Mobile  =  MediaQuery('mobile')
     const Tablet  =  MediaQuery('tablet')
     const Desktop =  MediaQuery('desktop')
 
-    
     const userGet = async () => {
         
         const aboutData =  await GetDocumentWhere('about', 'key' , 'about' )

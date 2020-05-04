@@ -81,5 +81,15 @@ export function DeleteFileStorage(rute)
     var desertRef = storageRef.child(rute);
     await desertRef.delete()
   }
-  return fetch()
+  return fetch() 
 }
+
+export function AddFileStorage( file , rutePath ){
+
+  const storageRef =  storage().ref( rutePath + file.name )
+  const response   =  storageRef.put( file ) 
+  
+
+}
+
+

@@ -37,7 +37,6 @@ function BackApp  () {
             if(user){
                 userGet()
                 setUserData(user)
-                
             }
             else{
                 setUserFirebase(true)
@@ -53,59 +52,49 @@ function BackApp  () {
         {(userData !== false) ? (
         
             <>
-
             <Header
                 userFirebase = {userFirebase[0]}
-            />      
-            <Container className="my-4" style = {{ backgroundColor : '#e6e6e6' }}>
-                
+            />    
+
+            <Container className="my-4">
                 <Row>
-                    
-                  
-                        <>
-                            {(auth.currentUser == null) ? (
-                                <>
+                    <>
+                        {(auth.currentUser == null) ? (
+                            <>
                                 <Login/>
-                                {console.log('true***')}
-                                </> 
+                            </> 
                             ) : (
-                                <>
-                                     <Col 
-                                        sm = {0} 
-                                        md = {0}
-                                        lg = {3}
-                                        xl = {3}
-                                    >
-                                        <Menu/>
-                                        
-                                    </Col>
-                                    <Col 
-                                        sm = {12} 
-                                        md = {6}
-                                        lg = {9}
-                                        xl = {9}
-                                        className="card effectShadow mt-5"
-                                    >
-                                        <Switch>
-                                            <>
-                                                <Route path = "/backDashboard" exact component = { Dashboard }  />
-                                                <Route path = "/backLogin"     exact component = { Login }  />
-                                                <Route path = "/backConfHome"  exact component = { ConfHome }  />
-                                                <Route path = "/backConfAbout"  exact component = { ConfAbout }  />
-                                                <Route path = "/backConfAvesTipo"  exact component = { ConfAvesTipo }  />
-                                                
-                                            </> 
-                                            <Route path = "*"  component = { PageNotFound }  />
-                                        </Switch>
-                                    </Col>
-
-                                </>
-
-                            )}
-                           
-                        </>
-                
-                  
+                            <>
+                                <Col 
+                                    sm = {0} 
+                                    md = {0}
+                                    lg = {3}
+                                    xl = {3}
+                                >
+                                    <Menu/>
+                                </Col>
+                                <Col 
+                                    sm = {12} 
+                                    md = {6}
+                                    lg = {9}
+                                    xl = {9}
+                                    className="card effectShadow mt-5"
+                                >
+                                    <Switch>
+                                        <>
+                                            <Route path = "/backDashboard"  exact component = { Dashboard }  />
+                                            <Route path = "/backLogin"      exact component = { Login }  />
+                                            <Route path = "/backConfHome"   exact component = { ConfHome }  />
+                                            <Route path = "/backConfAbout"  exact component = { ConfAbout }  />
+                                            <Route path = "/backConfAvesTipo"  exact component = { ConfAvesTipo }  />
+                                        </> 
+                                        <Route path = "*"  component = { PageNotFound }  />
+                                    </Switch>
+                                </Col>
+                            </>
+                        )}
+                        
+                    </>
                 </Row>
             </Container>
               

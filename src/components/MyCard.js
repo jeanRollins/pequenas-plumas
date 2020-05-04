@@ -8,12 +8,10 @@ export function MyCard(props){
     
     return(
         <Card style={{ width: '100%' , height : '100%' }}>
-            <Card.Img variant="top" src={props.image} />
+            <Card.Img variant="top" src={props.image} fluid/>
             <Card.Body>
                 <Card.Title>{props.name}</Card.Title>
                 
-                <Card.Text className="">{props.short_description} </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
             </Card.Body>
         </Card>
     )
