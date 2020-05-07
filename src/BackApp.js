@@ -12,7 +12,8 @@ import ConfHome from './pages/back/ConfHome'
 import PageNotFound from './pages/PageNotFound' 
 import ConfAbout from './pages/back/ConfAbout' 
 import ConfAvesTipo from './pages/back/ConfAvesTipo' 
-
+import ConfEmail from './pages/back/ConfEmail' 
+import ConfSales from './pages/back/ConfSales' 
 
 import { BrowserRouter as Router, Route, Switch , withRouter, useHistory } from 'react-router-dom' 
 import { auth } from './firebase'
@@ -87,6 +88,8 @@ function BackApp  () {
                                             <Route path = "/backConfHome"   exact component = { ConfHome }  />
                                             <Route path = "/backConfAbout"  exact component = { ConfAbout }  />
                                             <Route path = "/backConfAvesTipo"  exact component = { ConfAvesTipo }  />
+                                            <Route path = "/backConfEmail"  exact component = { ConfEmail }  />
+                                            <Route path = "/backConfSales"  exact component = { ConfSales }  />
                                         </> 
                                         <Route path = "*"  component = { PageNotFound }  />
                                     </Switch>

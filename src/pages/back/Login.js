@@ -1,11 +1,17 @@
 import React, {useState,useEffect} from 'react'
 import { validate, isAuthPage } from '../../libs/Login' 
+import {auth} from '../../firebase'
 
 import { withRouter } from 'react-router-dom'
 
 import { Container , Row , Col , Card , Form , Button, Spinner } from 'react-bootstrap'
 
 function Login(props){
+
+
+    if( auth.currentUser){
+        props.history.push('/backDashboard')
+    }
   
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

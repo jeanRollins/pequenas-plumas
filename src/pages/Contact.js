@@ -88,7 +88,8 @@ const Contact =  () => {
                 name    ,
                 email   ,
                 message : dataMessageEnc ,
-                date    : GetDateTime()  
+                date    : GetDateTime()  ,
+                status  : 1
             }
             await AddCollecion('mails' , documentMails )
             ToastsStore.success("Consulta enviada :) " )

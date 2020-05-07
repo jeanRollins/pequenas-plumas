@@ -25,6 +25,14 @@ export const menuItems = [
   {
     to    : '/backConfAbout' ,
     name  : 'Conf About' 
+  },
+  {
+    to    : '/backConfEmail' ,
+    name  : 'Correos recibidos' 
+  },
+  {
+    to    : '/backConfSales' ,
+    name  : 'Ventas' 
   }
 ]
 
@@ -38,7 +46,6 @@ function Header (props) {
   return (
     
     <div className="effectShadow text-white">
-
       <Navbar className="bgPrimary text-white" expand="lg">
         
         <Link 
@@ -78,37 +85,17 @@ function Header (props) {
 
                   <Navbar.Collapse id="basic-navbar-nav " align="left" >
                     <Nav className="mr-auto ">
-              
-                      <NavItem className="my-2">
-                        <Link 
-                          to="/backDashboard" 
-                          className="navLink  " > 
-                          Home   
-                        </Link>
-                      </NavItem>
-                      <NavItem className="my-2">
-                        <Link 
-                          to="/backConfHome" 
-                          className="navLink  " > 
-                          Config Home   
-                        </Link>
-                      </NavItem>
 
-                      <NavItem className="my-2">
-                        <Link 
-                          to="/backConfAvesTipo" 
-                          className="navLink  " > 
-                          Conf Aves Tipo   
-                        </Link>
-                      </NavItem>
-                      <NavItem className="my-2">
-                        <Link 
-                          to="/backConfAbout" 
-                          className="navLink  " > 
-                          Conf About  
-                        </Link>
-                      </NavItem>
-
+                      { menuItems.map( (row ,index) => (
+                        <NavItem key = { index } className="my-2">
+                          <Link 
+                            to = { row.to } 
+                            className="navLink  " > 
+                            { row.name }   
+                          </Link>
+                        </NavItem>
+                      ))}
+                     
                       <NavItem className="my-2">
                         <Link 
                           to="/backLogin" 
@@ -133,37 +120,18 @@ function Header (props) {
 
                   <Navbar.Collapse id="basic-navbar-nav " align="left" >
                     <Nav className="mr-auto ">
-              
-                      <NavItem className="m-2">
-                        <Link 
-                          to="/backDashboard" 
-                          className="navLink  " > 
-                          Home   
-                        </Link>
-                      </NavItem>
-                      <NavItem className="m-2">
-                        <Link 
-                          to="/backConfHome" 
-                          className="navLink  " > 
-                          Config Home   
-                        </Link>
-                      </NavItem>
-
-                      <NavItem className="m-2">
-                        <Link 
-                          to="/backConfAvesTipo" 
-                          className="navLink  " > 
-                          Conf Aves Tipo   
-                        </Link>
-                      </NavItem>
-                      <NavItem className="m-2">
-                        <Link 
-                          to="/backConfAbout" 
-                          className="navLink  " > 
-                          Conf About  
-                        </Link>
-                      </NavItem>
-
+                          
+                      { menuItems.map( (row, index) => (
+                        <NavItem key = { index } className="m-2">
+                          <Link 
+                            key = { index }
+                            to = { row.to } 
+                            className="navLink  " > 
+                            { row.name }  
+                          </Link>
+                        </NavItem>
+                      ))}
+                     
                       <NavItem className="m-2">
                         <Link 
                           to="/backLogin"

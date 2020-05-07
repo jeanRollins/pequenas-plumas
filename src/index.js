@@ -13,11 +13,6 @@ import './globals.js'
 
 let url = window.location.pathname.substr(0,5)
 
-
-console.log('window.location.pathname**' , window.location.pathname);
-
-console.log('url**' , url);
-
 if( url != '/back' ){
     
     ReactDOM.render(<App />, document.getElementById('root'));

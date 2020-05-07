@@ -5,13 +5,8 @@ import {auth} from '../../firebase'
 import {GetDocumentWhere} from '../../firebaseData'
 
 import SpinnerLoad from '../../components/SpinnerLoad'
-
 import { Container ,Row, Col, Table} from 'react-bootstrap'
-
-
 import MyBarChart from '../../components/back/MyBarChart'
-
-
 
 const Dashboard = (props) => {
 
@@ -30,11 +25,9 @@ const Dashboard = (props) => {
     useEffect( () => {
         if( auth.currentUser){
             setUser( auth.currentUser )
-            
             userGet()
         }
         else{
-            {console.log('**EEREE')}
             props.history.push('/backLogin')
         }
     },[])

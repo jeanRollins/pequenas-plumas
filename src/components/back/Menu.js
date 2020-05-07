@@ -7,8 +7,6 @@ import { withRouter,Link } from 'react-router-dom'
 
 
 export default  function Menu (){
-
-    console.log('menuItems',menuItems[0]);
     
     const styleLink = {
         color : global.COLOR_PRIMARY,
