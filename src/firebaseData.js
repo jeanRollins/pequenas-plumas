@@ -32,7 +32,7 @@ export function GetDocumentWhereConditionals( collection , where , type,  where2
   return fetch()
 }
 
-export function GetCollecion(collection)
+export function GetCollection(collection)
 {
   const fetch = async () => {
     const response =  await db.collection(collection).get()
@@ -64,7 +64,7 @@ export function DeleteDocument( collection, id )
   return fetch()
 }
 
-export function AddCollecion(collection, document)
+export function AddCollection(collection, document)
 {
   const fetch = async () => {
     const response = await db.collection(collection).add( document )

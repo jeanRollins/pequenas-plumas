@@ -3,7 +3,7 @@ import FooterComponent from '../components/FooterComponent'
 import {SendMail} from '../libs/Mail'
 import {Encrypt , Decrypt} from '../libs/Encrypt'
 import {ToastsContainer, ToastsStore} from 'react-toasts'
-import {AddCollecion} from '../firebaseData'
+import {AddCollection} from '../firebaseData'
 import { GetDateTime} from '../globals'
 import MediaQuery  from '../components/commons/MediaQuery'
 import Title  from '../components/Title'
@@ -91,7 +91,7 @@ const Contact =  () => {
                 date    : GetDateTime()  ,
                 status  : 1
             }
-            await AddCollecion('mails' , documentMails )
+            await AddCollection('mails' , documentMails )
             ToastsStore.success("Consulta enviada :) " )
             setBtnConsultar(true)
             setBtnConsultando(false)

@@ -1,13 +1,11 @@
 import React ,{ useState} from 'react'
-import { Table} from 'react-bootstrap'
-import {Encrypt , Decrypt} from '../../libs/Encrypt'
+import { Table, Button, Modal} from 'react-bootstrap'
+import { AiOutlineMail } from "react-icons/ai"
+import { FaTrashAlt } from "react-icons/fa"
+import { Decrypt} from '../../libs/Encrypt'
+import {formatNumber} from '../../globals'
 
-import { Modal, Button } from 'react-bootstrap'
-
-
-const TableResponsive = (props) => {
-
-    console.log( 'props**' , props);
+const TableResponsive = ( props ) => {
     
     const keys       =  props.config.keys
     const header     =  props.config.headerTable
@@ -30,7 +28,6 @@ const TableResponsive = (props) => {
         setNameMessage( emailData.name )
         setEmailMessage(emailData.email)
         setEmailDate(emailData.date)
-
         handleShow(true)
     }
 
@@ -39,17 +36,27 @@ const TableResponsive = (props) => {
         { (show) && (
             <Modal show={true} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title> Email </Modal.Title>
+                    <Modal.Title> Email <AiOutlineMail style={{ margin : '-2px 0px 0px 0px' }}/> </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Nombre : {nameMessage}
-                    <br/>
-                    Email : {emailMessage}
-                    <br/>
-                    Fecha de envío : {emailDate}
-                    <br/>
+                    <table>
+                        <tr>
+                            <td> Nombre :  </td>
+                            <td> {nameMessage} </td>
+                        </tr>
+                        <tr>
+                            <td> Email :  </td>
+                            <td> {emailMessage} </td>
+                        </tr>
+                        <tr>
+                            <td> Fecha de envío :  </td>
+                            <td> {emailDate} </td>
+                        </tr>
+                    </table>
+                    
                     <br/>
                     {message}
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>
@@ -60,7 +67,7 @@ const TableResponsive = (props) => {
         )}
 
         
-        <Table responsive>
+        <Table responsive  hover>
             <thead>
                 <tr>
                     { header.map( (row , index) => (
@@ -82,6 +89,15 @@ const TableResponsive = (props) => {
                                     row[keyData.resource]
                                 )}
 
+                                { ( keyData.type == 'number' ) && (
+                                   '$' + formatNumber.new( row[keyData.resource] )
+                                )}
+
+                                { ( keyData.type == 'function' ) && (
+                                    
+                                   <Button onClick={ e => keyData.method( row[keyData.resource] ) }  variant="outline-danger"> <FaTrashAlt/> </Button>
+                                )}
+
                                 { ( keyData.type == 'link' ) && (
 
                                     <a href="#" onClick={ (e) => { e.preventDefault()   
@@ -90,6 +106,7 @@ const TableResponsive = (props) => {
                                                             {keyData.name} 
                                     </a>
                                 )}
+
                             </td> 
                         ))}
                     </tr>

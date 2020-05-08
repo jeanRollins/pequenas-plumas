@@ -4,7 +4,7 @@ import { Container ,Row, Col, Modal , Button,Spinner} from 'react-bootstrap'
 import  Title  from '../../components/Title'
 
 import {storage} from '../../firebase'
-import { GetDocumentWhereConditionals, GetDocumentWhere , AddCollecion  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
+import { GetDocumentWhereConditionals, GetDocumentWhere , AddCollection  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
 import MediaQuery from '../../components/commons/MediaQuery'
 import SpinnerLoad from '../../components/SpinnerLoad'
 import {ToastsContainer, ToastsStore} from 'react-toasts'
@@ -156,7 +156,7 @@ function ConfAbout(props){
                     type     : 'about'
                 }
 
-                const responseAdd = AddCollecion( 'files_home_carousel' , collectionCarousel )
+                const responseAdd = AddCollection( 'files_home_carousel' , collectionCarousel )
                 getData()
             })
             .then( () => {

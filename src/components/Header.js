@@ -3,7 +3,6 @@ import {LOGO} from '../globals'
 //Bootstrap Components
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import { FaHome ,FaGripHorizontal ,FaUsers, FaImage } from "react-icons/fa";
 
 
 

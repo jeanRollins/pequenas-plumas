@@ -6,7 +6,7 @@ import FooterComponent from '../components/FooterComponent'
 import { Container ,Row, Col} from 'react-bootstrap'
 import MapDirection from '../components/MapDirection'
 import SpinnerLoad from '../components/SpinnerLoad'
-import { GetCollecion , GetDocumentWhereConditionals } from '../firebaseData'
+import { GetCollection , GetDocumentWhereConditionals } from '../firebaseData'
 
 function Home() {
 
@@ -16,7 +16,7 @@ function Home() {
 
   const fetchData = async () => {
 
-    const dataAb  = await GetCollecion('about')
+    const dataAb  = await GetCollection('about')
     const dataCar = await GetDocumentWhereConditionals( 'files_home_carousel', 'type' , 'home' , 'status' , 1 )
     setAbout(dataAb)
     setDataCarousel( dataCar )

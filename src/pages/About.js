@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react' 
 import SpinnerLoad from '../components/SpinnerLoad'
 import { Container ,Row, Col} from 'react-bootstrap'
-import { GetCollecion , GetDocumentWhereConditionals } from '../firebaseData'
+import { GetCollection , GetDocumentWhereConditionals } from '../firebaseData'
 import { CardInline } from '../components/MyCard'
 import FooterComponent from '../components/FooterComponent'
 import { CarouselBootstrap } from '../components/CarrouselResponsive'
@@ -16,7 +16,7 @@ function About() {
 
 
   const fetchApi = async () => {
-    const data = await GetCollecion('about')
+    const data = await GetCollection('about')
     const dataTemp  =  await GetDocumentWhereConditionals( 'files_home_carousel', 'type' , 'about' , 'status' , 1 )
     setDataCarousel(dataTemp)
     setDataAbout(data)

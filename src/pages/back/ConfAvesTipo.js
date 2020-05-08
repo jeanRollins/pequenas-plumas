@@ -1,5 +1,5 @@
 import React ,{useEffect , useState}  from 'react'
-import {GetCollecion , AddCollecion ,  DeleteFileStorage , DeleteDocument, GetDocumentWhere, UpdateDocument} from '../../firebaseData'
+import {GetCollection , AddCollection ,  DeleteFileStorage , DeleteDocument, GetDocumentWhere, UpdateDocument} from '../../firebaseData'
 import { Container , Row , Col , Form, Figure, Button , Spinner, Modal, Badge} from 'react-bootstrap'
 import Title from '../../components/Title'
 import {CreateUrl} from '../../globals'
@@ -161,7 +161,7 @@ export default function ConfAvesTipo(props){
 
     const fetchData = async () => { 
         try {
-          const collection = await GetCollecion('birds_type')
+          const collection = await GetCollection('birds_type')
           console.log('collection**' , collection);
           
           await setDataBirds( collection )
@@ -219,7 +219,7 @@ export default function ConfAvesTipo(props){
                     status : 0
                 }
 
-                AddCollecion( 'birds_type_images' , document )
+                AddCollection( 'birds_type_images' , document )
                 
             })
             .then( () => {
@@ -281,11 +281,11 @@ export default function ConfAvesTipo(props){
                 }
 
                 try {
-                    let response = await AddCollecion( 'birds_type' , document )
+                    let response = await AddCollection( 'birds_type' , document )
                     
                     if(response){
 
-                        let resp = await AddCollecion( 'birds_type_images' , documentImage )
+                        let resp = await AddCollection( 'birds_type_images' , documentImage )
                         fetchData()
                         ToastsStore.success("Tipo de ave guardada : ) " )
                         setBtnAdd(true)

@@ -4,7 +4,7 @@ import { Container , Row , Col} from 'react-bootstrap'
 import  {CardResponsive} from '../components/MyCard'
 import SpinnerLoad from '../components/SpinnerLoad'
 import FooterComponent from '../components/FooterComponent'
-import {GetCollecion} from '../firebaseData'
+import {GetCollection} from '../firebaseData'
 
 function AvesTipo() {
 
@@ -13,7 +13,7 @@ function AvesTipo() {
   const fetchData = async () => { 
     
     try {
-      const collection = await GetCollecion('birds_type')
+      const collection = await GetCollection('birds_type')
       await setDataBirds( collection )
     } 
     catch (error) {

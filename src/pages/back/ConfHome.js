@@ -8,7 +8,7 @@ import SpinnerLoad from '../../components/SpinnerLoad'
 import { Container ,Row, Col, Form, Modal , Button,Spinner} from 'react-bootstrap'
 import  Title  from '../../components/Title'
 
-import {GetDocumentWhere , GetDocumentWhereConditionals , AddCollecion  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
+import {GetDocumentWhere , GetDocumentWhereConditionals , AddCollection  ,  DeleteFileStorage , DeleteDocument,  UpdateDocument } from '../../firebaseData'
 
 import MediaQuery from '../../components/commons/MediaQuery'
 import {ToastsContainer, ToastsStore} from 'react-toasts'
@@ -134,7 +134,7 @@ function ConfHome(props){
                     rutePath : 'home/' + inputFile.name ,
                     type     : 'home'
                 } 
-                const responseAdd = AddCollecion( 'files_home_carousel' , collectionCarousel )
+                const responseAdd = AddCollection( 'files_home_carousel' , collectionCarousel )
 
                 userGet()
                

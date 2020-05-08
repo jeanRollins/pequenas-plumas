@@ -4,6 +4,8 @@ import {LOGO} from '../../globals'
 import {Navbar, Nav, NavItem, Image} from 'react-bootstrap'
 import { withRouter,Link } from 'react-router-dom'
 
+import { FaArrowRight } from 'react-icons/fa';
+
 import {logout} from '../../libs/Login'
 
 import MediaQuery from '../../components/commons/MediaQuery'
@@ -75,7 +77,7 @@ function Header (props) {
                       props.history.push('/backLogin')
                     }} 
                   > 
-                    Salir   
+                    Salir <FaArrowRight/>  
                   </Link>
                 </Desktop>
 
@@ -106,7 +108,7 @@ function Header (props) {
                             props.history.push('/backLogin')
                           }} 
                         > 
-                          Salir   
+                          Salir  
                         </Link>
                       </NavItem>
                     </Nav>
@@ -142,7 +144,7 @@ function Header (props) {
                             props.history.push('/backLogin')
                           }} 
                         > 
-                          Salir   
+                          Salir  
                         </Link>
                       </NavItem>
                     </Nav>

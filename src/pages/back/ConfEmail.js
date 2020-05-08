@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 //data
 import {auth} from '../../firebase'
-import {Encrypt , Decrypt} from '../../libs/Encrypt'
 
 
 //modules
@@ -13,8 +12,6 @@ import {GetDocumentWhere} from '../../firebaseData'
 import TableResponsive from '../../components/back/TableResponsive'
 import SpinnerLoad from '../../components/SpinnerLoad'
 
-
-
 function ConfEmail(props){
 
     const [ user , setUser ] = useState( false  )
@@ -22,21 +19,21 @@ function ConfEmail(props){
     const [ messageHtml , setMessageHtml ] = useState( '' )
 
 
-const configTable = {
-    
-    headerTable : ['Fecha' , 'Email', 'Nombre', 'Link'] ,
+    const configTable = {
+        
+        headerTable : ['Fecha' , 'Email', 'Nombre', 'Link'] ,
 
-    keys : [
-        { type : 'text' , resource : 'date'  } , 
-        { type : 'text' , resource : 'email' } ,
-        { type : 'text' , resource : 'name'  } ,
-        { type     : 'link'    , 
-          resource : 'message' , 
-          name     : 'Abrir'   , 
-          isMethod : true      
-        }
-    ] 
-}
+        keys : [
+            { type : 'text' , resource : 'date'  } , 
+            { type : 'text' , resource : 'email' } ,
+            { type : 'text' , resource : 'name'  } ,
+            { type     : 'link'    , 
+            resource : 'message' , 
+            name     : 'Abrir'   , 
+            isMethod : true      
+            }
+        ] 
+    }
 
     const fetch = async () => {
         const data  =  await GetDocumentWhere('mails', 'status' , 1 )
